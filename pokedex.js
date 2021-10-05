@@ -1,6 +1,6 @@
 const baseURL = 'https://pokeapi.co/api/v2/pokemon/'
 const poke_container = document.getElementById('poke_img');
-const pokemon_num = 151;
+const pokemon_num = 1;
 const colors = {
     fire: '#FDDFDF',
 	grass: '#DEFDE0',
@@ -30,12 +30,11 @@ const getPokemon = async id => {
     const url = baseURL + id;
     const res = await fetch(url);
     const pokemon = await res.json();
+    addPokemonImage(pokemon);
 }
 
 
-
 fetchPokemon();
-
 
 function addPokemonImage(pokemon) {
     var poke_img = document.createElement("img");
