@@ -1,6 +1,7 @@
 const baseURL = 'https://pokeapi.co/api/v2/pokemon/'
 const poke_container = document.getElementById('poke_img');
 const pokemon_num = 1;
+var poke_img = document.createElement("img");
 const colors = {
     fire: '#FDDFDF',
 	grass: '#DEFDE0',
@@ -31,13 +32,27 @@ const getPokemon = async id => {
     const res = await fetch(url);
     const pokemon = await res.json();
     addPokemonImage(pokemon);
+    document.getElementById('right-btn').addEventListener("click", function() {
+        pokemon.id++;
+        if (pokemon.id >= 151) {
+            pokemon.id = 0;
+        }
+        addPokemonImage(pokemon);
+      });
+    document.getElementById('left-btn').addEventListener("click", function() {
+        pokemon.id--;
+        if (pokemon.id <= 0) {
+            pokemon.id = 151;
+        }
+        addPokemonImage(pokemon);
+    });
 }
 
 
 fetchPokemon();
 
+
 function addPokemonImage(pokemon) {
-    var poke_img = document.createElement("img");
     poke_img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
     poke_container.appendChild(poke_img);
 }
