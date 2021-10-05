@@ -1,5 +1,5 @@
 const baseURL = 'https://pokeapi.co/api/v2/pokemon/'
-const poke_container = document.getElementById('poke_container');
+const poke_container = document.getElementById('poke_img');
 const pokemon_num = 151;
 const colors = {
     fire: '#FDDFDF',
@@ -30,11 +30,20 @@ const getPokemon = async id => {
     const url = baseURL + id;
     const res = await fetch(url);
     const pokemon = await res.json();
-    createPokemonCard(pokemon);
 }
+
+
 
 fetchPokemon();
 
+
+function addPokemonImage(pokemon) {
+    var poke_img = document.createElement("img");
+    poke_img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
+    poke_container.appendChild(poke_img);
+}
+
+/*
 function createPokemonCard(pokemon) {
     const pokemonEl = document.createElement('div');
     pokemonEl.classList.add('pokemon');
@@ -61,3 +70,4 @@ function createPokemonCard(pokemon) {
 
     poke_container.appendChild(pokemonEl);
 }
+*/
