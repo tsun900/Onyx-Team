@@ -1,7 +1,12 @@
 const baseURL = 'https://pokeapi.co/api/v2/pokemon/'
-const poke_container = document.getElementById('poke_img');
 const pokemon_num = 1;
+const poke_container = document.getElementById('poke_img');
 var poke_img = document.createElement("img");
+const pokeName = document.querySelector('.poke-name');
+const pokeTypeOne = document.querySelector('.poke-type-one')
+const pokeTypeTwo = document.querySelector('.poke-type-two')
+const pokeHeight = document.querySelector('.poke-height');
+const pokeWeight = document.querySelector('.poke-weight');
 const colors = {
     fire: '#FDDFDF',
 	grass: '#DEFDE0',
@@ -31,11 +36,12 @@ const getPokemon = async id => {
     const url = baseURL + id;
     const res = await fetch(url);
     const pokemon = await res.json();
+    addPokemonInfo(pokemon);
     addPokemonImage(pokemon);
     document.getElementById('right-btn').addEventListener("click", function() {
         pokemon.id++;
         if (pokemon.id >= 151) {
-            pokemon.id = 0;
+            pokemon.id = 1;
         }
         addPokemonImage(pokemon);
       });
@@ -55,6 +61,17 @@ fetchPokemon();
 function addPokemonImage(pokemon) {
     poke_img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
     poke_container.appendChild(poke_img);
+}
+
+const capitalize = (str) => str[0].toUpperCase() + str.substr(1);
+
+function addPokemonInfo(pokemon) {
+    const poke_types = pokemon['types'];
+    const first_type = poke_types[0];
+    const second_type = poke_types[1];
+    pokeName.textContent = capitalize(pokemon['name']);
+    pokeWeight.textContent = pokemon['weight'];
+    pokeHeight.textContent = pokemon['height'];
 }
 
 /*
