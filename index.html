@@ -19,15 +19,22 @@
         </span>
       </div>
       <div class="row">
-        <div id="poke-img-container" class="image col-md-5" style="padding: 10rem; margin-right: 2rem;">
-          <img id="poke-img" alt="image of pokemon" src="https://static.wikia.nocookie.net/p__/images/a/a3/Agumon_%282020%29_Render.png/revision/latest?cb=20200124035029&path-prefix=protagonist"/>
-          <div id="poke-type-1">type 1</div>
-          <div id="poke-type-2">type 2</div>
+
+        
+        <div id="poke_img" class="image col-md-5" style=" margin-right: 2rem;">
+          <div class="input-group">
+            <input type="search" id = "searchbar" class="form-control rounded" placeholder="Search" aria-label="Search"
+            aria-describedby="search-addon" />
+            <button type="button" id = "search-btn" class="btn btn-outline-primary">search</button>
+          </div>
         </div>
-        <div id="poke-screen" class="Info col-md-5"style="padding: 10rem; margin-left: 2rem;">
-          <p id="poke-name" class="screen-name">
+        <div id="poke_screen" class="Info col-md-5"style="padding: 10rem; margin-left: 2rem;">
+          <p class="screen-name">
             <span class="poke-name"></span>
           </p>
+          <div class="types">
+            <span class="poke-type-one"></span>
+            <span class="poke-type-two"></span>
           </div>
           <p class="screen-weight">
             Weight: <span class="poke-weight"></span>
