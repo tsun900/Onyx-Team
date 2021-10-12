@@ -1,3 +1,31 @@
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+p {
+    font-family: 'Montserrat', sans-serif;
+}
+
+li {
+    font-family: 'Montserrat', sans-serif;
+}
+
+#poke-name {
+    font-size: 4.5rem;
+}
+
+#poke-screen {
+    padding: 10rem; 
+    margin-left: 2rem; 
+    height: 30rem; 
+    overflow-y: scroll;
+}
+
+#poke-img {
+    background-color: #BADBB2;
+}
+
 .flexbox-container {
     display: -ms-flexbox;
     display: -webkit-flex;
@@ -14,13 +42,30 @@
 }
 
 .flex-item {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.flex {
+    display: flex;
+}
+  
+.flex-col {
+    flex-direction: column;
 }
 
-img {
-    max-width: 100%;
-    max-height: 100%;
+.flex-row {
+    flex-direction: row;
 }
 
+.justify-around {
+    justify-content: space-around;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+  
+.items-center {
+    align-items: center;
+}
