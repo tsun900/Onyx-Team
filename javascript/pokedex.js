@@ -1,12 +1,12 @@
 const baseURL = 'https://pokeapi.co/api/v2/pokemon/'
-// const pokemon_num = 1;
-// const poke_container = document.getElementById('poke_img');
-// var poke_img = document.createElement("img");
-// const pokeName = document.querySelector('.poke-name');
-// const pokeTypeOne = document.querySelector('.poke-type-one')
-// const pokeTypeTwo = document.querySelector('.poke-type-two')
-// const pokeHeight = document.querySelector('.poke-height');
-// const pokeWeight = document.querySelector('.poke-weight');
+const pokemon_num = 1;
+const poke_container = document.getElementById('poke_img');
+var poke_img = document.createElement("img");
+const pokeName = document.querySelector('.poke-name');
+const pokeTypeOne = document.querySelector('.poke-type-one')
+const pokeTypeTwo = document.querySelector('.poke-type-two')
+const pokeHeight = document.querySelector('.poke-height');
+const pokeWeight = document.querySelector('.poke-weight');
 const colors = {
     fire: '#FDDFDF',
 	grass: '#DEFDE0',
@@ -33,12 +33,14 @@ function fetchPokemonData(input){
     fetch(url)
     .then(response => response.json())
     .then(function(pokeData){
-        console.log(pokeData)
+        addPokemonImage(pokeData)
     })
 }
 document.getElementById('search-btn').addEventListener("click", function() {
     searchPoke();
 })
+fetchPokemonData('1');
+
 // const main_types = Object.keys(colors);
 
 // const fetchPokemon = async () => {
@@ -53,30 +55,31 @@ document.getElementById('search-btn').addEventListener("click", function() {
 //     const pokemon = await res.json();
 //     addPokemonInfo(pokemon);
 //     addPokemonImage(pokemon);
-//     document.getElementById('right-btn').addEventListener("click", function() {
-//         pokemon.id++;
-//         if (pokemon.id >= 151) {
-//             pokemon.id = 1;
-//         }
-//         addPokemonImage(pokemon);
-//       });
-//     document.getElementById('left-btn').addEventListener("click", function() {
-//         pokemon.id--;
-//         if (pokemon.id <= 0) {
-//             pokemon.id = 151;
-//         }
-//         addPokemonImage(pokemon);
-//     });
+    
 // }
 
 
 // fetchPokemon();
 
 
-// function addPokemonImage(pokemon) {
-//     poke_img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
-//     poke_container.appendChild(poke_img);
-// }
+function addPokemonImage(pokemon) {
+    poke_img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
+    poke_container.appendChild(poke_img);
+    document.getElementById('right-btn').addEventListener("click", function() {
+        pokemon.id++;
+        if (pokemon.id > 151) {
+            pokemon.id = 1;
+        }
+        fetchPokemonData(pokemon.id);
+      });
+    document.getElementById('left-btn').addEventListener("click", function() {
+        pokemon.id--;
+        if (pokemon.id <= 0) {
+            pokemon.id = 151;
+        }
+        fetchPokemonData(pokemon.id);
+    });
+}
 
 // const capitalize = (str) => str[0].toUpperCase() + str.substr(1);
 
