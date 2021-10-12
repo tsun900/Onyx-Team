@@ -26,6 +26,9 @@ const colors = {
 function searchPoke() {
     let input = document.getElementById('searchbar').value
     input = input.toLowerCase();
+    pokeName.textContent = "";
+    pokeWeight.textContent = "";
+    pokeHeight.textContent = "";
     fetchPokemonData(input);
 }
 function fetchPokemonData(input){
@@ -34,33 +37,15 @@ function fetchPokemonData(input){
     .then(response => response.json())
     .then(function(pokeData){
         addPokemonImage(pokeData)
+        document.getElementById('btn-info').addEventListener("click", function() {
+            addPokemonInfo(pokeData)
+        })
     })
 }
 document.getElementById('search-btn').addEventListener("click", function() {
     searchPoke();
 })
 fetchPokemonData('1');
-
-// const main_types = Object.keys(colors);
-
-// const fetchPokemon = async () => {
-//     for(let i = 1; i <= pokemon_num; i++) {
-//         await getPokemon(i);
-//     }
-// }
-
-// const getPokemon = async id => {
-//     const url = baseURL + id;
-//     const res = await fetch(url);
-//     const pokemon = await res.json();
-//     addPokemonInfo(pokemon);
-//     addPokemonImage(pokemon);
-    
-// }
-
-
-// fetchPokemon();
-
 
 function addPokemonImage(pokemon) {
     poke_img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
@@ -70,27 +55,33 @@ function addPokemonImage(pokemon) {
         if (pokemon.id > 151) {
             pokemon.id = 1;
         }
+        pokeName.textContent = "";
+        pokeWeight.textContent = "";
+        pokeHeight.textContent = "";
         fetchPokemonData(pokemon.id);
       });
     document.getElementById('left-btn').addEventListener("click", function() {
         pokemon.id--;
-        if (pokemon.id <= 0) {
+        if (pokemon.id <= 0) {  
             pokemon.id = 151;
         }
+        pokeName.textContent = "";
+        pokeWeight.textContent = "";
+        pokeHeight.textContent = "";
         fetchPokemonData(pokemon.id);
     });
 }
 
-// const capitalize = (str) => str[0].toUpperCase() + str.substr(1);
+const capitalize = (str) => str[0].toUpperCase() + str.substr(1);
 
-// function addPokemonInfo(pokemon) {
-//     const poke_types = pokemon['types'];
-//     const first_type = poke_types[0];
-//     const second_type = poke_types[1];
-//     pokeName.textContent = capitalize(pokemon['name']);
-//     pokeWeight.textContent = pokemon['weight'];
-//     pokeHeight.textContent = pokemon['height'];
-// }
+function addPokemonInfo(pokemon) {
+    const poke_types = pokemon['types'];
+    const first_type = poke_types[0];
+    const second_type = poke_types[1];
+    pokeName.textContent = capitalize(pokemon['name']);
+    pokeWeight.textContent = "Weight: " + pokemon['weight'];
+    pokeHeight.textContent = "Height: " + pokemon['height'];
+}
 
 /*
 function createPokemonCard(pokemon) {
