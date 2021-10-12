@@ -23,18 +23,22 @@ const colors = {
 	fighting: '#E6E0D4',
 	normal: '#F5F5F5'
 };
-
 function searchPoke() {
     let input = document.getElementById('searchbar').value
-    input=input.toLowerCase();
-    
+    input = input.toLowerCase();
+    fetchPokemonData(input);
 }
-function fetchData() {
-    fetch('https://pokeapi.co/api/v2/pokemon/1/')
-    .then(Response => Response.json)
-    .then(pokeData => console.log(pokeData))
+function fetchPokemonData(input){
+    let url = baseURL + input;
+    fetch(url)
+    .then(response => response.json())
+    .then(function(pokeData){
+        console.log(pokeData)
+    })
 }
-fetchData();
+document.getElementById('search-btn').addEventListener("click", function() {
+    searchPoke();
+})
 // const main_types = Object.keys(colors);
 
 // const fetchPokemon = async () => {
