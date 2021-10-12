@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/main.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="pokedex.js" defer></script>
     <title>Document</title>
 </head>
 <body>
@@ -18,13 +19,26 @@
         </span>
       </div>
       <div class="row">
-        <div class="info col-md-5" style="background-color: black; padding: 10rem; margin-right: 2rem;">
+        <div id="poke_img" class="image col-md-5" style="padding: 10rem; margin-right: 2rem;">
         </div>
-        <div class="image col-md-5"style="background-color: black; padding: 10rem; margin-left: 2rem;">
-      </div>
+        <div id="poke_screen" class="Info col-md-5"style="padding: 10rem; margin-left: 2rem;">
+          <p class="screen-name">
+            <span class="poke-name"></span>
+          </p>
+          <div class="types">
+            <span class="poke-type-one"></span>
+            <span class="poke-type-two"></span>
+          </div>
+          <p class="screen-weight">
+            Weight: <span class="poke-weight"></span>
+          </p>
+          <p class="screen-height">
+            Height: <span class="poke-height"></span>
+          </p>
+        </div>
           <div class="d-grid gap-2 d-md-block col-md-6">
-              <button class="btn btn-primary" type="button">right</button>
-              <button class="btn btn-primary" type="button">left</button>
+              <button class="btn btn-primary" type="button" id = "left-btn">left</button>
+              <button class="btn btn-primary" type="button" id = "right-btn">right</button>
             </div>
             <div class="col-sm-4 flexbox-container">
                 <div class="col-sm-6 btn-group flex-item">
