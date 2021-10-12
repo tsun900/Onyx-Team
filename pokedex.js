@@ -22,6 +22,7 @@ function searchPoke() {
     input = input.toLowerCase();
     fetchPokemonData(input);
 }
+let moves = {}
 function fetchPokemonData(input){
     let url = baseURL + input;
     fetch(url)
@@ -33,9 +34,23 @@ function fetchPokemonData(input){
         type_1.innerHTML = poke.types[0].type.name
         type_2.innerHTML = poke.types[1]?.type.name || 'none'
         stats = poke.stats
+        moves = poke.moves
         document.getElementById('btn-info').addEventListener("click", function() {
             addPokemonInfo(poke)
         })
+        document.getElementById('btn-move').addEventListener("click", function() {
+            removeAllChileNodes(document.getElementById('poke-screen'))
+            Moves();
+        })
+    })
+}
+
+function Moves() {
+    moves.forEach(function(move) {
+        console.log(move.move.name)
+        let moveName = document.createElement('p') 
+        moveName.innerText = move.move.name
+        document.getElementById('poke-screen').appendChild(moveName)
     })
 }
 document.getElementById('search-btn').addEventListener("click", function() {
@@ -101,6 +116,7 @@ const getPokemon = () => {
   fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon_num}`)
     .then(r => r.json())
     .then(poke => {
+        console.log(poke)
       img.src = poke.sprites.front_default
       console.log(poke.types)
       poke_name.innerHTML = poke.forms[0].name
@@ -134,4 +150,9 @@ document.addEventListener('click', (e) => {
   }
 })
 
+function removeAllChileNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
 getPokemon()
