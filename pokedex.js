@@ -1,51 +1,46 @@
 
-// const baseURL = 'https://pokeapi.co/api/v2/pokemon/'
+const baseURL = 'https://pokeapi.co/api/v2/pokemon/'
+const get = (id) => document.getElementById(id)
+const img = get('poke-img')
+const poke_name = get('poke-name')
+const type_1 = get('poke-type-1')
+const type_2 = get('poke-type-2')
+const get_stats = get('stats')
+const go_right = get('right-btn')
+const go_left = get('left-btn')
+
 // const pokemon_num = 1;
 // const poke_container = document.getElementById('poke_img');
 // var poke_img = document.createElement("img");
-// const pokeName = document.querySelector('.poke-name');
+const pokeName = document.querySelector('.poke-name');
 // const pokeTypeOne = document.querySelector('.poke-type-one')
 // const pokeTypeTwo = document.querySelector('.poke-type-two')
 // const pokeHeight = document.querySelector('.poke-height');
 // const pokeWeight = document.querySelector('.poke-weight');
-// const colors = {
-//     fire: '#FDDFDF',
-// 	grass: '#DEFDE0',
-// 	electric: '#FCF7DE',
-// 	water: '#DEF3FD',
-// 	ground: '#f4e7da',
-// 	rock: '#d5d5d4',
-// 	fairy: '#fceaff',
-// 	poison: '#98d7a5',
-// 	bug: '#f8d5a3',
-// 	dragon: '#97b3e6',
-// 	psychic: '#eaeda1',
-// 	flying: '#F5F5F5',
-// 	fighting: '#E6E0D4',
-// 	normal: '#F5F5F5'
-// };
-// function searchPoke() {
-//     let input = document.getElementById('searchbar').value
-//     input = input.toLowerCase();
-//     pokeName.textContent = "";
-//     pokeWeight.textContent = "";
-//     pokeHeight.textContent = "";
-//     fetchPokemonData(input);
-// }
-// function fetchPokemonData(input){
-//     let url = baseURL + input;
-//     fetch(url)
-//     .then(response => response.json())
-//     .then(function(pokeData){
-//         addPokemonImage(pokeData)
-//         document.getElementById('btn-info').addEventListener("click", function() {
-//             addPokemonInfo(pokeData)
-//         })
-//     })
-// }
-// document.getElementById('search-btn').addEventListener("click", function() {
-//     searchPoke();
-// })
+function searchPoke() {
+    let input = document.getElementById('searchbar').value
+    input = input.toLowerCase();
+    fetchPokemonData(input);
+}
+function fetchPokemonData(input){
+    let url = baseURL + input;
+    fetch(url)
+    .then(response => response.json())
+    .then(function(poke){
+        img.src = poke.sprites.front_default
+        console.log(poke.types)
+        poke_name.innerHTML = poke.forms[0].name
+        type_1.innerHTML = poke.types[0].type.name
+        type_2.innerHTML = poke.types[1]?.type.name || 'none'
+        stats = poke.stats
+        document.getElementById('btn-info').addEventListener("click", function() {
+            addPokemonInfo(poke)
+        })
+    })
+}
+document.getElementById('search-btn').addEventListener("click", function() {
+    searchPoke();
+})
 // fetchPokemonData('1');
 
 // function addPokemonImage(pokemon) {
@@ -83,15 +78,6 @@
 //     pokeWeight.textContent = "Weight: " + pokemon['weight'];
 //     pokeHeight.textContent = "Height: " + pokemon['height'];
 // }
-
-const get = (id) => document.getElementById(id)
-const img = get('poke-img')
-const poke_name = get('poke-name')
-const type_1 = get('poke-type-1')
-const type_2 = get('poke-type-2')
-const get_stats = get('stats')
-const go_right = get('right-btn')
-const go_left = get('left-btn')
 
 let stats = {}
 const typeColors = {
