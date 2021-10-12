@@ -8,14 +8,14 @@ const get_stats = get('stats-button')
 const go_right = get('right-btn')
 const go_left = get('left-btn')
 const info_screen = get('poke-screen')
-const hp = get('hp')
-const attack = get('attack')
-const defense = get('defense')
-const special_attack = get('special-attack')
-const special_defense = get('special-defense')
-const speed = get('speed')
-const weight = get('weight')
-const height = get('height')
+const hp = document.createElement('p') 
+const attack = document.createElement('p') 
+const defense = document.createElement('p') 
+const special_attack = document.createElement('p') 
+const special_defense = document.createElement('p') 
+const speed = document.createElement('p') 
+const weight = document.createElement('p') 
+const height = document.createElement('p') 
 let stats = []
 
 // const pokemon_num = 1;
@@ -37,19 +37,21 @@ function fetchPokemonData(input){
     fetch(url)
     .then(response => response.json())
     .then(function(poke){
-        img.src = poke.sprites.front_default
+        img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${poke.id}.png`
         console.log(poke.types)
         poke_name.innerHTML = poke.forms[0].name
         type_1.innerHTML = poke.types[0].type.name
         type_2.innerHTML = poke.types[1]?.type.name || 'none'
         stats = poke.stats
+        stats = poke.stats 
         moves = poke.moves
+            document.getElementById('btn-move').addEventListener("click", function() {
+                removeAllChileNodes(document.getElementById('poke-screen'))
+                Moves();
+            })
         document.getElementById('btn-info').addEventListener("click", function() {
-            addPokemonInfo(poke)
-        })
-        document.getElementById('btn-move').addEventListener("click", function() {
-            removeAllChileNodes(document.getElementById('poke-screen'))
-            Moves();
+            removeAllChileNodes(info_screen)
+            infoDisplay(poke);
         })
     })
 }
@@ -65,7 +67,6 @@ function Moves() {
 document.getElementById('search-btn').addEventListener("click", function() {
     searchPoke();
 })
-let stats = {}
 let pokemon_num = 1;
 const getPokemon = () => {
   fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon_num}`)
@@ -77,17 +78,29 @@ const getPokemon = () => {
       type_1.innerHTML = capitalize(poke.types[0].type.name)
       type_2.innerHTML = capitalize(poke.types[1]?.type.name || 'none')
       stats = poke.stats 
-      weight.textContent = "Weight: " + poke.weight
-      height.textContent = "Height: "+ poke.height
-      hp.textContent = "HP: " + stats[0].base_stat
-      attack.textContent = "Attack: " + stats[1].base_stat
-      defense.textContent = "Defense: " + stats[2].base_stat
-      special_attack.textContent = "Special Attack: " + stats[3].base_stat
-      special_defense.textContent = "Special Defense: " + stats[4].base_stat
-      speed.textContent = "Speed: " + stats[5].base_stat
+      moves = poke.moves
+        document.getElementById('btn-move').addEventListener("click", function() {
+            removeAllChileNodes(document.getElementById('poke-screen'))
+            Moves();
+        })
+      document.getElementById('btn-info').addEventListener("click", function() {
+        removeAllChileNodes(info_screen)
+        infoDisplay(poke);
+      })
     })
 }
 
+function infoDisplay(poke) {
+    weight.innerText = "Weight: " + poke.weight
+    height.innerText = "Height: "+ poke.height
+    hp.innerText = "HP: " + stats[0].base_stat
+    attack.innerText = "Attack: " + stats[1].base_stat
+    defense.innerText = "Defense: " + stats[2].base_stat
+    special_attack.innerText = "Special Attack: " + stats[3].base_stat
+    special_defense.innerText = "Special Defense: " + stats[4].base_stat
+    speed.innerText = "Speed: " + stats[5].base_stat
+    info_screen.append(weight, height, hp, attack, defense, special_attack, special_defense, speed);
+}
 const nextPoke = () => {
   pokemon_num++
   getPokemon()
