@@ -11,20 +11,18 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="input-group rounded">
-        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-          aria-describedby="search-addon" />
-        <span class="input-group-text border-0" id="search-addon">
-          <i class="fas fa-search"></i>
-        </span>
-      </div>
       <div class="row">
-        <div id="poke-img-container" class="image col-md-5" style="padding: 10rem; margin-right: 2rem;">
+        <div id="poke-img-container" class="image col-md-5" style="margin-right: 2rem;">
+          <div class="input-group">
+            <input type="search" id = "searchbar" class="form-control rounded" placeholder="Search" aria-label="Search"
+            aria-describedby="search-addon" />
+            <button type="button" id = "search-btn" class="btn btn-outline-primary">search</button>
+          </div>
           <img id="poke-img" alt="image of pokemon" src="https://static.wikia.nocookie.net/p__/images/a/a3/Agumon_%282020%29_Render.png/revision/latest?cb=20200124035029&path-prefix=protagonist"/>
-          <div id="poke-type-1">type 1</div>
-          <div id="poke-type-2">type 2</div>
+          <p id="poke-type-1">type 1</p>
+          <p id="poke-type-2">type 2</p>
         </div>
-        <div id="poke-screen" class="Info col-md-5"style="padding: 10rem; margin-left: 2rem;">
+        <div id="poke-screen" class="Info col-md-5"style="padding: 10rem; margin-left: 2rem; height: 30rem; overflow-y: scroll">
           <p id="poke-name" class="screen-name">
             <span class="poke-name"></span>
           </p>
