@@ -29,12 +29,16 @@
             <span class="poke-name"></span>
           </p>
           </div>
-          <p class="screen-weight">
-            Weight: <span class="poke-weight"></span>
-          </p>
-          <p class="screen-height">
-            Height: <span class="poke-height"></span>
-          </p>
+          <ul id="stats-list">
+            <li id="weight">Weight: </li>
+            <li id="height">Height: </li>
+            <li id="hp">Hp: </li>
+            <li id="attack">Attack:</li>
+            <li id="defense">Defense: </li>
+            <li id="special-attack">Special Attack: </li>
+            <li id="special-defense">Special Defense: </li>
+            <li id="speed">Speed: </li>
+          </ul>
         </div>
           <div class="d-grid gap-2 d-md-block col-md-6">
               <button class="btn btn-primary" type="button" id ="left-btn">left</button>
@@ -42,7 +46,7 @@
             </div>
             <div class="col-sm-4 flexbox-container">
                 <div class="col-sm-6 btn-group flex-item">
-                  <button type="button" id="id_button_add" class="btn btn-danger btn-block">
+                  <button type="button" id="stats-button" class="btn btn-danger btn-block">
                      <i class="fa fa-remove" aria-hidden="true"></i>
                      <span class="hidden-xs hidden-sm"> Info</span>
                   </button>
