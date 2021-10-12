@@ -16,7 +16,7 @@ li {
 }
 
 #poke-screen {
-    padding: 10rem; 
+    padding-left: 15rem;
     margin-left: 2rem; 
     height: 30rem; 
     overflow-y: scroll;
@@ -33,12 +33,8 @@ li {
     justify-content:center;
     
     -ms-flex-align: center;
-    -webkit-align-items: center;
     -webkit-box-align: center;
     
-    /* just so we can see the parent div*/
-    border:2px solid black;
-    height:100px;
 }
 
 .flex-item {

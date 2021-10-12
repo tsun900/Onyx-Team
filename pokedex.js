@@ -128,6 +128,7 @@ const getEvo = () => {
     .then(r => r.json())
     .then(evo => {
       evo_data = evo.chain
+      console.log(evo_data)
       evoChain.push(capitalize(evo_data.species.name))
       evoChain.push(capitalize(evo_data.evolves_to[0].species.name))
       if(evo_data.evolves_to[0].evolves_to.length > 0) {
