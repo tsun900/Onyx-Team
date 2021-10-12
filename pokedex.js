@@ -1,7 +1,7 @@
 const baseURL = 'https://pokeapi.co/api/v2/pokemon/'
 const get = (id) => document.getElementById(id)
 const img = get('poke-img')
-const poke_name = get('poke-name')
+const poke_name = document.createElement('p') 
 const type_1 = get('poke-type-1')
 const type_2 = get('poke-type-2')
 const go_right = get('right-btn')
@@ -79,6 +79,7 @@ const getPokemon = () => {
       moves = poke.moves
       poke_weight = poke.weight
       poke_height = poke.height
+      poke_name.innerText = poke.name
       getLocation();
       getSpecies();
       removeAllChileNodes(info_screen)
@@ -90,7 +91,7 @@ const getPokemon = () => {
       special_attack.innerText = "Special Attack: " + stats[3].base_stat
       special_defense.innerText = "Special Defense: " + stats[4].base_stat
       speed.innerText = "Speed: " + stats[5].base_stat
-      info_screen.append(weight, height, hp, attack, defense, special_attack, special_defense, speed);
+      info_screen.append(poke_name, weight, height, hp, attack, defense, special_attack, special_defense, speed);
     })
 }
 
@@ -151,11 +152,12 @@ document.addEventListener('click', (e) => {
     special_attack.innerText = "Special Attack: " + stats[3].base_stat
     special_defense.innerText = "Special Defense: " + stats[4].base_stat
     speed.innerText = "Speed: " + stats[5].base_stat
-    info_screen.append(weight, height, hp, attack, defense, special_attack, special_defense, speed);
+    info_screen.append(poke_name, weight, height, hp, attack, defense, special_attack, special_defense, speed);
   } else if (e.target === get_moves) {
     removeAllChileNodes(info_screen)
     moves.forEach(function(move) {
       let moveName = document.createElement('p') 
+      console.log(move)
       moveName.innerText = capitalize(move.move.name)
       info_screen.appendChild(moveName)
   })
