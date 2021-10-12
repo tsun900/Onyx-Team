@@ -50,8 +50,19 @@ function fetchPokemonData(input){
         moves = poke.moves
         poke_weight = poke.weight
         poke_height = poke.height
+        poke_name.innerText = poke.name
         getLocation();
         getSpecies();
+        removeAllChileNodes(info_screen)
+        weight.innerText = "Weight: " + poke_weight
+        height.innerText = "Height: "+ poke_height
+        hp.innerText = "HP: " + stats[0].base_stat
+        attack.innerText = "Attack: " + stats[1].base_stat
+        defense.innerText = "Defense: " + stats[2].base_stat
+        special_attack.innerText = "Special Attack: " + stats[3].base_stat
+        special_defense.innerText = "Special Defense: " + stats[4].base_stat
+        speed.innerText = "Speed: " + stats[5].base_stat
+        info_screen.append(poke_name, weight, height, hp, attack, defense, special_attack, special_defense, speed);
     })
 }
 
