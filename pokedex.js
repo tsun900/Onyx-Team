@@ -65,61 +65,7 @@ function Moves() {
 document.getElementById('search-btn').addEventListener("click", function() {
     searchPoke();
 })
-// fetchPokemonData('1');
-
-// function addPokemonImage(pokemon) {
-//     poke_img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
-//     poke_container.appendChild(poke_img);
-//     document.getElementById('right-btn').addEventListener("click", function() {
-//         pokemon.id++;
-//         if (pokemon.id > 151) {
-//             pokemon.id = 1;
-//         }
-//         pokeName.textContent = "";
-//         pokeWeight.textContent = "";
-//         pokeHeight.textContent = "";
-//         fetchPokemonData(pokemon.id);
-//       });
-//     document.getElementById('left-btn').addEventListener("click", function() {
-//         pokemon.id--;
-//         if (pokemon.id <= 0) {  
-//             pokemon.id = 151;
-//         }
-//         pokeName.textContent = "";
-//         pokeWeight.textContent = "";
-//         pokeHeight.textContent = "";
-//         fetchPokemonData(pokemon.id);
-//     });
-// }
-
-// const capitalize = (str) => str[0].toUpperCase() + str.substr(1);
-
-// function addPokemonInfo(pokemon) {
-//     const poke_types = pokemon['types'];
-//     const first_type = poke_types[0];
-//     const second_type = poke_types[1];
-//     pokeName.textContent = capitalize(pokemon['name']);
-//     pokeWeight.textContent = "Weight: " + pokemon['weight'];
-//     pokeHeight.textContent = "Height: " + pokemon['height'];
-// }
-
 let stats = {}
-const typeColors = {
-  fire: '#FDDFDF',
-	grass: '#DEFDE0',
-	electric: '#FCF7DE',
-	water: '#DEF3FD',
-	ground: '#f4e7da',
-	rock: '#d5d5d4',
-	fairy: '#fceaff',
-	poison: '#98d7a5',
-	bug: '#f8d5a3',
-	dragon: '#97b3e6',
-	psychic: '#eaeda1',
-	flying: '#F5F5F5',
-	fighting: '#E6E0D4',
-	normal: '#F5F5F5'
-}
 let pokemon_num = 1;
 const getPokemon = () => {
   fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon_num}`)
